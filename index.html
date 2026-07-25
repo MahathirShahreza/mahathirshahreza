@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="assets/images/icon.png">
+<title>Mahathir Shahreza — Portfolio Assistant</title>
+<meta name="description" content="Portfolio Mahathir Shahreza — tanya apa saja tentang project, skill, dan pengalamannya." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="antialiased">
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-mark"><span class="loader-dot"></span> booting portfolio.exe</div>
+</div>
+
+<!-- Ambient blur backdrops -->
+<div class="bg-blur bg-blur-1"></div>
+<div class="bg-blur bg-blur-2"></div>
+
+<!-- STICKY TOPBAR — only visible once a chat has started -->
+<header id="topbar" class="topbar">
+  <button id="topbar-home" class="topbar-identity" aria-label="Kembali ke beranda">
+    <span class="avatar avatar-sm font-display" id="topbar-avatar"></span>
+    <span class="topbar-text">
+      <span class="topbar-name" id="topbar-name"></span>
+      <span class="topbar-role" id="topbar-role"></span>
+    </span>
+  </button>
+  <button id="clear-chat" class="topbar-clear">Clear chat</button>
+</header>
+
+<main id="app">
+
+  <!-- ================= LANDING / HERO ================= -->
+  <section id="hero" class="hero">
+    <div class="hero-inner">
+      <div class="avatar avatar-lg font-display" id="hero-avatar"></div>
+      <h1 class="hero-name font-display" id="hero-name"></h1>
+      <p class="hero-role" id="hero-role"></p>
+      <p class="hero-tagline" id="hero-tagline"></p>
+
+      <!-- shared element: this exact node morphs into the docked chat composer -->
+      <div id="search-wrap" class="search-wrap search-wrap--hero">
+        <form id="ask-form" class="search-form">
+          <span class="search-icon">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </span>
+          <input id="ask-input" type="text" autocomplete="off" placeholder="Ask me anything..." />
+          <button type="submit" class="search-submit" aria-label="Kirim pertanyaan">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="quick-actions" id="quick-actions"></div>
+    </div>
+  </section>
+
+  <!-- ================= CHAT VIEW ================= -->
+  <section id="chat-view" class="chat-view" aria-hidden="true">
+    <div id="chat-messages" class="chat-messages"></div>
+    <!-- search-wrap gets reparented here in chat mode -->
+    <div id="search-dock" class="search-dock"></div>
+  </section>
+
+</main>
+
+<!-- ================= CERTIFICATE DETAIL MODAL ================= -->
+<div id="cert-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+    <button type="button" id="cert-modal-close" class="modal-close" aria-label="Close">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+
+    <div class="modal-preview">
+      <img id="cert-modal-image" src="" alt="" />
+      <div class="modal-preview-fallback">
+        <i data-lucide="badge-check" class="w-8 h-8"></i>
+        <span>Preview not available</span>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <h3 id="cert-modal-title" class="modal-title font-display"></h3>
+
+      <dl class="modal-meta">
+        <div class="modal-meta-row">
+          <dt>Issuer</dt>
+          <dd id="cert-modal-issuer"></dd>
+        </div>
+        <div class="modal-meta-row">
+          <dt>Date</dt>
+          <dd id="cert-modal-date"></dd>
+        </div>
+        <div class="modal-meta-row">
+          <dt>Credential ID</dt>
+          <dd id="cert-modal-id" class="font-mono"></dd>
+        </div>
+      </dl>
+
+      <a id="cert-modal-download" class="card-btn primary modal-download" href="#" download>
+        <i data-lucide="download" class="w-4 h-4"></i> Download PDF
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/keyword.js"></script>
+<script src="js/portfolio-data.js"></script>
+<script src="js/ai-engine.js"></script>
+<script src="js/chat-ui.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
